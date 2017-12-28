@@ -10,4 +10,10 @@ public interface BeatDao{
 	
 	public Beat loginverify(Beat beat);
 	
+	public Beat getbeat(String pin_code);
+	
+	public Beat sign(String loginid);
+	
+	public Beat signlast(String loginid,String password,String flag);
+	
 	}

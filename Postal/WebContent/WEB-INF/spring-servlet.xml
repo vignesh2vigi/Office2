@@ -23,6 +23,9 @@
 
 <bean id="beatService" class="com.postal.service.BeatServiceImpl"></bean>
 <bean id="beatDao" class="com.postal.dao.BeatDaoImpl"></bean>
+
+<bean id="postalAddressService" class="com.postal.service.PostalServiceImpl"></bean>
+<bean id="postalAddressDao" class="com.postal.dao.PostalAddressDaoImpl"></bean>
 	 
 	 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

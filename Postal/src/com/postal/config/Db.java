@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 
 public class Db {
 	
-	public static Connection mysqlConnect(){
+	public Connection mysqlConnect(){
 		Connection connection = null;
 		
 		try{
@@ -21,9 +21,10 @@ public class Db {
 		}
 		return connection;
 	}
-	public static void main(String args[])
+	/*public static void main(String args[])
 	{
 		Db.mysqlConnect();
-	}
+	}*/
+	
 
 }

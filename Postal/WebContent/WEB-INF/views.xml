@@ -7,5 +7,4 @@
      <!-- <bean id="excelView" class="com.postal.controller.ExcelBuilder" /> -->
      <bean id="getlead" class="com.postal.controller.LeadController"></bean>
      <bean id="login" class="com.postal.controller.BeatController"></bean>
-     
-</beans>
+     </beans>

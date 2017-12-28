@@ -99,12 +99,13 @@ public class Beat {
 	private String ip_address;
 	
 	
-	private Integer flag;
+	private String flag;
 
-	public Integer getFlag() {
+	
+	public String getFlag() {
 		return flag;
 	}
-	public void setFlag(Integer flag) {
+	public void setFlag(String flag) {
 		this.flag = flag;
 	}
 	private String status;
