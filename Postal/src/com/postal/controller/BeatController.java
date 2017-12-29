@@ -20,42 +20,29 @@ public class BeatController {
 	private BeatService beatService;
 	
 
-	/*@RequestMapping(value = "/login", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Beat> login(@RequestBody Beat beat) {
-	    Beat idj = beatService.login(beat);
-		return new ResponseEntity<Beat>(idj, HttpStatus.OK);
-	}*/
-     
-	@RequestMapping(value = "/password", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Beat> password(@RequestBody Beat beat) {
-	    Beat idj = beatService.passcheck(beat);
-		return new ResponseEntity<Beat>(idj, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/loginfinal", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Beat> loginfinal(@RequestBody Beat beat) {
-	    Beat idj = beatService.loginverify(beat);
-		return new ResponseEntity<Beat>(idj, HttpStatus.OK);
-	}
-	@RequestMapping(value = "/getbeat", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	
-     public ResponseEntity<Beat> getbeat(@RequestParam String pin_code) {
-		System.out.println("beatlogin_query:sdfcvgbhnnm"+pin_code);
-	    Beat idj = beatService.getbeat(pin_code);
-	    
-		return new ResponseEntity<Beat>(idj, HttpStatus.OK);
-	}
-	@RequestMapping(value = "/sign", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public ResponseEntity<Beat> sign(@RequestParam String loginid) {
-			System.out.println("beatlogin_query:sdfcvgbhnnm"+loginid);
-		    Beat idj = beatService.sign(loginid);
+	@RequestMapping(value = "/loglast", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
+	 public ResponseEntity<Beat> loglast(@RequestBody Beat beat) {
+			System.out.println("beatlogin_query:sdfcvgbhnnm"+beat);
+		    Beat idj = beatService.loglast(beat);
+		    
+			return new ResponseEntity<Beat>(idj, HttpStatus.OK);
+		}
+	@RequestMapping(value = "/log", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
+	 public ResponseEntity<Beat> log (@RequestBody Beat beat) {
+			System.out.println("beatlogin_query:sdfcvgbhnnm"+beat);
+		    Beat idj = beatService.log(beat);
 		    return new ResponseEntity<Beat>(idj, HttpStatus.OK);
 		}
-	@RequestMapping(value = "/signlast", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	 public ResponseEntity<Beat> signlast(@RequestParam String loginid,String password,String flag) {
-			
-		    Beat idj = beatService.signlast(loginid, password, flag);
+	@RequestMapping(value = "/finallog", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
+	 public ResponseEntity<Beat> finallog (@RequestBody Beat beat) {
+			System.out.println("beatlogin_query:sdfcvgbhnnm"+beat);
+		    Beat idj = beatService.finallog(beat);
 		    return new ResponseEntity<Beat>(idj, HttpStatus.OK);
 		}
-	
+	/*@RequestMapping(value = "/adre", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
+	 public ResponseEntity<Beat> adre (@RequestBody Beat beat) {
+			System.out.println("beatlogin_query:sdfcvgbhnnm"+beat);
+		    Beat idj = beatService.adrs(beat);
+		    return new ResponseEntity<Beat>(idj, HttpStatus.OK);
+		}*/
 }

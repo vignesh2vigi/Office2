@@ -36,5 +36,21 @@ public class PostalServiceImpl implements PostalAddressService {
 		return postalAddressDao.Addressverify(clientid, lead_id, leadstatus, remark);
 	}
 
+
+
+	@Override
+	public PostalAddressModel verify(PostalAddressModel address) {
+		// TODO Auto-generated method stub
+		return postalAddressDao.verify(address);
+	}
+
+
+
+	@Override
+	public PostalAddressOutputModel getAddress(PostalAddressOutputModel add) {
+		// TODO Auto-generated method stub
+		return postalAddressDao.getAddress(add);
+	}
+
 	
 }

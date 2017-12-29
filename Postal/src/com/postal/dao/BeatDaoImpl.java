@@ -20,6 +20,9 @@ import org.springframework.stereotype.Repository;
 
 import com.postal.config.Db;
 import com.postal.model.Beat;
+import com.postal.model.Lead;
+import com.postal.model.PostalAddressModel;
+import com.postal.model.PostalAddressOutputModel;
 
 
 @Repository("beatDao")
@@ -30,176 +33,21 @@ public class BeatDaoImpl implements BeatDao {
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public Beat login(Beat beat) {
-		// TODO Auto-generated method stub
-		Beat le = new Beat();
-		List<Beat> vey = new ArrayList<Beat>();
-		@SuppressWarnings("unused")
-		int rowvalue=0;
 		
-		//String query = "SELECT loginid FROM postal_beat_master";
-		String query = "SELECT GROUP_CONCAT(SUBSTRING_INDEX(SUBSTRING_INDEX(loginid, '_', -1),'-','1')) AS  loginid FROM postal_beat_master";
-		String pin_code = beat.getPin_code();
-		if (pin_code != null && !pin_code.isEmpty()) {
-			query += " WHERE pin_code='" + pin_code + "'";
-		}
-		/*query += " limit " + pageid + "," + tPerage;*/
- 
-		System.out.println("QueryListfghjk :::::+++" + query);
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate1;
 
-		vey = this.getJdbcTemplate().query(query, new RowMapper() {
-
-			@Override
-			public Beat mapRow(ResultSet resultSet, int rownumber)
-					throws SQLException {
-				Beat bt = new Beat();
-				System.out.println(resultSet.getRow());
-				
-				
-                bt.setLoginid(resultSet.getString("loginid"));
-               
-                return bt;
-			}
-		});
-	  /* String sql = "select count(*) from postal_beat_master";
-		rowvalue = getJdbcTemplate().queryForObject(sql, Integer.class);*/
-		
-		if (vey.size() > 0) {
-			System.out.println("beatdfghjkklltfrgdcr" + vey);
-			
-			le.setStatus("SUCCESS");
-			
-			
-		} else {
-			le.setStatus("FAILURE");
-		}
-		
-		return le;	
+	public JdbcTemplate getJdbcTemplate1() {
+		return jdbcTemplate;
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public Beat passcheck(Beat beat) {
+	public Beat loglast(Beat beat) {
 		// TODO Auto-generated method stub
-		Beat le = new Beat();
-		List<Beat> vey = new ArrayList<Beat>();
-		@SuppressWarnings("unused")
-		int rowvalue=0;
 		
-		String query = "SELECT password FROM postal_beat_master";
-		String loginid = beat.getLoginid();
-		/*String pin_code=beat.getPin_code();*/
-		/*if (beatno != null && !beatno.isEmpty() && pincode != null && !pincode.isEmpty()) {
-			query += " WHERE beatno=' AND pincode='" + pincode + "'" + beatno + "'";
-		}*/
-		if (loginid != null && !loginid.isEmpty()) {
-			query += " WHERE loginid='" + loginid + "'";
-		}
-		/*if (pin_code != null && !pin_code.isEmpty()) {
-			query += " AND pin_code='" + pin_code + "'";
-		}*/
-		/*query += " limit " + pageid + "," + tPerage;*/
- 
-		System.out.println("QueryListfghjk :::::+++" + query);
 
-		vey = this.getJdbcTemplate().query(query, new RowMapper() {
-
-			@Override
-			public Beat mapRow(ResultSet resultSet, int rownumber)
-					throws SQLException {
-				Beat btd = new Beat();
-				System.out.println(resultSet.getRow());
-				
-                btd.setPassword(resultSet.getString("password"));
-               
-                return btd;
-			}
-		});
-		String sql = "select count(*) from postal_beat_master";
-		rowvalue = getJdbcTemplate().queryForObject(sql, Integer.class);
 		
-		
-		if (vey.size() > 0) {
-			System.out.println("beatdfghjkklltfrgdcr" + vey);
-			le.setVey(vey);
-			le.setStatus("success");
-			le.setFlag("1");               //1 - password exist
-			 
-			
-		} else {
-			le.setStatus("succes");
-			le.setFlag("2");
-			  //2- password exist
-		}
-		
-		return le;
-	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public Beat loginverify(Beat beat) {
-		// TODO Auto-generated method stub
-	
-		Beat le = new Beat();
-		List<Beat> vey = new ArrayList<Beat>();
-		@SuppressWarnings("unused")
-		int rowvalue=0;
-		
-		String query = "SELECT password FROM postal_beat_master";
-		String loginid = beat.getLoginid();
-		String pin_code=beat.getPin_code();
-		String password=beat.getPassword();
-		/*if (beatno != null && !beatno.isEmpty() && pincode != null && !pincode.isEmpty()) {
-			query += " WHERE beatno=' AND pincode='" + pincode + "'" + beatno + "'";
-		}*/
-		if (loginid != null && !loginid.isEmpty()) {
-			query += " WHERE loginid='" + loginid + "'";
-		}
-		if (pin_code != null && !pin_code.isEmpty()) {
-			query += " AND pin_code='" + pin_code + "'";
-		}
-		if ( password != null && !password.isEmpty()) {
-			query += " AND password='" + password + "'";
-		}
-		/*query += " limit " + pageid + "," + tPerage;*/
- 
-		System.out.println("QueryListfghjk :::::+++" + query);
-
-		vey = this.getJdbcTemplate().query(query, new RowMapper() {
-
-			@Override
-			public Beat mapRow(ResultSet resultSet, int rownumber)
-					throws SQLException {
-				Beat btd = new Beat();
-				System.out.println(resultSet.getRow());
-				
-                btd.setPassword(resultSet.getString("password"));
-               
-                return btd;
-			}
-		});
-		String sql = "select count(*) from postal_beat_master";
-		rowvalue = getJdbcTemplate().queryForObject(sql, Integer.class);
-		
-		
-		if (vey.size() > 0) {
-			System.out.println("beatdfghjkklltfrgdcr" + vey);
-			
-			le.setStatus("success");
-			le.setStatus("password found");
-			
-		} else {
-			le.setStatus("failure");
-			le.setMessage("password not found");
-		}
-		
-		return le;
-	}
-	
-	
-	@Override
-	public Beat getbeat(String pin_code) {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -214,6 +62,8 @@ public class BeatDaoImpl implements BeatDao {
 			con = db.mysqlConnect();
 
 			stmt = con.createStatement();
+			
+			String pin_code= beat.getPin_code();
 
 			String login_query = "SELECT GROUP_CONCAT(SUBSTRING_INDEX(SUBSTRING_INDEX(loginid, '_', -1),'-','1')) AS  loginid FROM postal_beat_master WHERE pin_code='"+ pin_code+ "'";
 			
@@ -281,9 +131,8 @@ public class BeatDaoImpl implements BeatDao {
 		return login_model;
 	}
 	@Override
-	public Beat sign(String loginid) {
+	public Beat log(Beat beat) {
 		// TODO Auto-generated method stub
-		
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -299,6 +148,8 @@ public class BeatDaoImpl implements BeatDao {
 
 			stmt = con.createStatement();
 
+			String loginid=beat.getLoginid();
+					
 			String login_query = "SELECT loginid,password,pin_code,created_date FROM postal_beat_master WHERE loginid='"+ loginid + "'";
 			
 		System.out.println("beatlogin_query:"+login_query);
@@ -362,17 +213,17 @@ public class BeatDaoImpl implements BeatDao {
 		}
 
 		return login_model;
-		
-	
 	}
 	@Override
-	public Beat signlast(String loginid, String password, String flag) {
+	public Beat finallog(Beat beat) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		
+		String loginid=beat.getLoginid();
+		String password=beat.getPassword();
+		int flag=beat.getFlag();
 		Beat login_model = new Beat();
 		Timestamp ts=new Timestamp(System.currentTimeMillis());
 		System.out.println("1beatlogin_query:sghfjgfhnfkkgnhknhgknkj"+password);
@@ -384,14 +235,15 @@ public class BeatDaoImpl implements BeatDao {
 			con = db.mysqlConnect();
 
 			stmt = con.createStatement();
-			System.out.println("3beatlogin_query:sghfjgfhnfkkgnhknhgknkj"+flag);
 			
-			if(flag.equals("1")){
+			
+			if(flag==1){
 
 			String login_query = "update postal_beat_master set password='"+password+"'  where loginid='"+loginid+"'";
-			
-		System.out.println("4beatlogin_query:sghfjgfhnfkkgnhknhgknkj"+login_query);
+		
+			System.out.println("4beatlogin_query:sghfjgfhnfkkgnhknhgknkj"+login_query);
 
+			
 			 cnt = stmt.executeUpdate(login_query);
 			}
 			else{
@@ -497,6 +349,281 @@ public class BeatDaoImpl implements BeatDao {
 		System.out.println("9beatlogin_query:sghfjgfhnfkkgnhknhgknkj"+loginid);
 		return login_model;
 	}
+	@Override
+	public Beat adrs(Beat beat) {
+		// TODO Auto-generated method stub
+		String loginid=beat.getLoginid();
+		String flag=beat.getFlg();
+		List<PostalAddressOutputModel> list = null;
+		List<PostalAddressModel> addressList = new ArrayList<>();
+
+		Connection con = null;
+		Statement stmt = null;
+		
+		Statement stmt_city=null;
+		
+		Statement stmt_state=null;
+		
+		ResultSet rs = null;
+		
+		ResultSet rs_city=null;
+		
+		ResultSet rs_state=null;
+		
+		
+		
+
+		PostalAddressOutputModel address_model1 = new PostalAddressOutputModel();
+
+		try {
+
+			Db db = new Db();
+
+			con = db.mysqlConnect();
+
+			stmt = con.createStatement();
+			
+			stmt_city=con.createStatement();
+			
+			stmt_state=con.createStatement();
+			
+			
+			
+			PostalAddressDaoImpl postal_addressverify = new PostalAddressDaoImpl();
+			   
+			   String sno = postal_addressverify.getlogin_id(loginid);
+			   
+			   String flag_status=""; 
+			   
+			   if(flag.equalsIgnoreCase("2")){
+				   
+				   flag_status=" AND lead_status='2'";
+			   }else if(flag.equalsIgnoreCase("3")){
+				   
+				   flag_status=" AND lead_status='3'";
+				   
+			   }else if(flag.equalsIgnoreCase("4")){
+				   
+				   flag_status=" AND lead_status='4'";
+				   
+				   
+			   }else {
+				   
+				   flag_status=" AND lead_status IN(2,3,4)";
+			   }
+			   
+			  
+			   
+			   
+			  String postal_area_address_query="SELECT SQL_CALC_FOUND_ROWS * FROM lead_details WHERE pincode IN (SELECT pin_code FROM postal_beat_master WHERE loginid='"+loginid+"' AND status='1') AND lead_assigned_to='"+loginid+"' "+flag_status+"";
+			
+			 System.out.println("postal_address:" + postal_area_address_query);
+
+			 rs = stmt.executeQuery(postal_area_address_query);
+
+			 boolean last = rs.last();
+
+			 int row = rs.getRow();
+			
+			 rs.beforeFirst();
+
+			if (row == 0) {
+				
+				list = new ArrayList<>();
+				address_model1.setStatus("NO RECORDSFOUND");
+				list.add(address_model1);
+
+			} else {
+
+				address_model1.setStatus("SUCCESS");
+
+				while (rs.next()) {
+
+					PostalAddressModel address_model = new PostalAddressModel();
+					
+					address_model.setClientid(rs.getString("clientid"));
+					address_model.setFirst_name(rs.getString("first_name"));
+					address_model.setGender(rs.getString("gender"));
+					address_model.setAge(rs.getString("age"));
+					address_model.setDoor_no(rs.getString("door_no"));
+					address_model.setStreet_name(rs.getString("street_name"));
+					address_model.setArea_name(rs.getString("area_name"));
+					address_model.setTaluk(rs.getString("taluk"));
+					address_model.setCity(rs.getString("city"));
+					address_model.setPincode(rs.getString("pincode"));
+					address_model.setState(rs.getString("state"));
+					address_model.setDate(rs.getDate("lead_created_date"));
+					address_model.setLead_status(rs.getString("lead_status"));
+					String lead_status = address_model.getLead_status();
+					
+					String gender = address_model.getGender();
+					
+					
+					if(gender.equalsIgnoreCase("0")){
+						
+						gender="Male";
+						
+						address_model.setGender(gender);
+					
+					}else if(gender.equalsIgnoreCase("1")){
+						
+					gender="Female";	
+					address_model.setGender(gender);
+					}else if(gender.equals("2")){
+						
+						gender="Other";
+						address_model.setGender(gender);
+						
+					}
+					
+					
+					String city = address_model.getCity();
+					
+					
+					String city_query_display="select * from master_cities where city_id ='"+city+"'";
+					
+					System.out.println("city_query_display:"+city_query_display);
+					
+					if(String.valueOf(city) !=null){
+						
+						rs_city = stmt_city.executeQuery(city_query_display);
+						
+						if(rs_city.next()){
+							
+							address_model.setCity(rs_city.getString("city_name"));
+							
+							
+						}
+						
+					}
+					
+					
+					
+					String state = address_model.getState();
+					
+					
+					String state_query_display="select * from master_states where state_id ='"+state+"' ";
+					
+					
+					if(String.valueOf(state)!=null){
+						
+						rs_state = stmt_state.executeQuery(state_query_display);
+						
+						if(rs_state.next()){
+							
+							address_model.setState(rs_state.getString("state_name"));
+						}
+				
+						
+					}
+					
+					
+					if(lead_status.equalsIgnoreCase("1")){
+						
+						lead_status="Open";
+						
+						address_model.setLead_status(lead_status);
+						
+					}else if(lead_status.equalsIgnoreCase("2")){
+						
+						lead_status="Allocated";
+						address_model.setLead_status(lead_status);
+					}else if(lead_status.equalsIgnoreCase("3")){
+						
+						lead_status="Varified";
+						address_model.setLead_status(lead_status);
+						
+					}else if(lead_status.equalsIgnoreCase("4")){
+						
+						lead_status="Not varified";
+						
+					//	address_model.setRemark(rs.getString("remarks"));
+						
+						address_model.setLead_status(lead_status);
+						
+						
+						
+						String remark = rs.getString("remarks");
+						
+						if(remark.equalsIgnoreCase("1")){
+							
+							remark="Customer Not Available, Address Correct";
+							
+							address_model.setRemark(remark);
+							
+						}else if(remark.equalsIgnoreCase("2")){
+							
+							remark="Customer Not Available, Address Incorrect";
+							
+							address_model.setRemark(remark);
+							
+						}else if(remark.equalsIgnoreCase("3")){
+							
+							remark="Customer Available, Address Incorrect";
+							
+							address_model.setRemark(remark);
+							
+						}else if(remark.equalsIgnoreCase("4")){
+							
+							remark="Request to reassign";
+							
+							address_model.setRemark(remark);
+						}
+						
+						System.out.println("remark####:"+address_model.getRemark());
+						
+					}
+					
+					addressList.add(address_model);
+
+				}
+				address_model1.setTotalcount(String.valueOf(row));
+				address_model1.setPostalAddress(addressList);
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+
+			try {
+				
+				if(rs_state!=null){
+					
+					
+					rs_state.close();
+					
+				}else if(rs_city!=null){
+					
+					rs_city.close();
+					
+				}
+
+				else if (rs != null) {
+
+					rs.close();
+				} else if (stmt != null) {
+
+					stmt.close();
+
+				} else if (con != null) {
+
+					con.close();
+				}
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+
+		}
+
+		// TODO Auto-generated method stub
+
+		return beat;
+	}
+	
 	
 	
 }

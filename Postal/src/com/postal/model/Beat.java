@@ -21,7 +21,7 @@ public class Beat {
 				+ mobileno + ", created_date=" + created_date
 				+ ", last_login_date=" + last_login_date + ", ip_address="
 				+ ip_address + ", status=" + status + ", message=" + message
-				+ ", vey=" + vey + "]";
+				+ ", beat=" + beat + "]";
 	}
 	public String getSno() {
 		return sno;
@@ -83,12 +83,14 @@ public class Beat {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public List<Beat> getVey() {
-		return vey;
+
+	public List<Beat> getBeat() {
+		return beat;
 	}
-	public void setVey(List<Beat> vey) {
-		this.vey = vey;
+	public void setBeat(List<Beat> beat) {
+		this.beat = beat;
 	}
+
 	private String sno;
 	private String loginid;
 	private String password;
@@ -98,20 +100,29 @@ public class Beat {
 	private Date last_login_date;
 	private String ip_address;
 	
-	
-	private String flag;
+	private String flg;
+	public String getFlg() {
+		return flg;
+	}
+	public void setFlg(String flg) {
+		this.flg = flg;
+	}
+
+	private int flag;
 
 	
-	public String getFlag() {
+	
+	public int getFlag() {
 		return flag;
 	}
-	public void setFlag(String flag) {
+	public void setFlag(int flag) {
 		this.flag = flag;
 	}
+
 	private String status;
 	
 	private String message;
-	private List<Beat> vey = new ArrayList<Beat>();
+	private List<Beat> beat = new ArrayList<Beat>();
 
 	
 

@@ -12,63 +12,34 @@ public class BeatServiceImpl implements BeatService {
 	
 	@Autowired
 	BeatDao beatDao;
-	@Override
-	public Beat login(Beat beat) {
-		return beatDao.login(beat);
-	}
 	
 
 
-	
-
-
-
 	@Override
-	public Beat getbeat(String pin_code) {
+	public Beat loglast(Beat beat) {
 		// TODO Auto-generated method stub
-		return beatDao.getbeat(pin_code);
+		return beatDao.loglast(beat);
 	}
 
 
-
-
-
-
-
 	@Override
-	public Beat passcheck(Beat beat) {
+	public Beat log(Beat beat) {
 		// TODO Auto-generated method stub
-		return beatDao.passcheck(beat);
-	}
-
-	@Override
-	public Beat loginverify(Beat beat) {
-		// TODO Auto-generated method stub
-		return beatDao.loginverify(beat);
+		return beatDao.log(beat);
 	}
 
 
-
-
-
-
-
 	@Override
-	public Beat sign(String loginid) {
+	public Beat finallog(Beat beat) {
 		// TODO Auto-generated method stub
-		return beatDao.sign(loginid);
+		return beatDao.finallog(beat);
 	}
 
 
-
-
-
-
-
 	@Override
-	public Beat signlast(String loginid, String password, String flag) {
+	public Beat adrs(Beat beat) {
 		// TODO Auto-generated method stub
-		return beatDao.signlast(loginid, password, flag);
+		return beatDao.adrs(beat);
 	}
 	
 	

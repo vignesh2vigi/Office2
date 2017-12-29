@@ -11,4 +11,8 @@ public interface PostalAddressService {
 	
 	public PostalAddressModel Addressverify(String clientid,String lead_id,
 			String leadstatus, String remark);
+	
+	public PostalAddressModel verify(PostalAddressModel address);
+	
+	public PostalAddressOutputModel getAddress(PostalAddressOutputModel add);
 }

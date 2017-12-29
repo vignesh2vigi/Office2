@@ -2,6 +2,12 @@ package com.postal.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@XmlRootElement
+@JsonInclude(Include.NON_DEFAULT)
 public class PostalAddressModel {
 	
 	private String clientid;
@@ -32,6 +38,48 @@ public class PostalAddressModel {
 	
 	private String lead_id;
 	
+	private String lead_assigned_to;
+	private String flag;
+	
+	
+
+	
+
+	@Override
+	public String toString() {
+		return "PostalAddressModel [clientid=" + clientid + ", first_name="
+				+ first_name + ", gender=" + gender + ", age=" + age
+				+ ", door_no=" + door_no + ", street_name=" + street_name
+				+ ", area_name=" + area_name + ", taluk=" + taluk + ", city="
+				+ city + ", pincode=" + pincode + ", state=" + state
+				+ ", date=" + date + ", lead_status=" + lead_status
+				+ ", lead_id=" + lead_id + ", lead_assigned_to="
+				+ lead_assigned_to + ", flag=" + flag + ", remark=" + remark
+				+ ", status=" + status + "]";
+	}
+
+
+
+	public String getFlag() {
+		return flag;
+	}
+
+
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+
+
+	public String getLead_assigned_to() {
+		return lead_assigned_to;
+	}
+
+	public void setLead_assigned_to(String lead_assigned_to) {
+		this.lead_assigned_to = lead_assigned_to;
+	}
+
 	public String getLead_id() {
 		return lead_id;
 	}
@@ -41,8 +89,21 @@ public class PostalAddressModel {
 	}
 
 	private String remark;
-	
 	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	
 
 	public String getClientid() {
 		return clientid;
@@ -154,12 +215,6 @@ public class PostalAddressModel {
 		this.remark = remark;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 
 }
